@@ -1,13 +1,30 @@
-name: Lint
+name: Lint and Format
 
 on: [push, pull_request]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: psf/black@stable
         with:
-          options: "--check --verbose"
-          src: "."
+          ref: ${{ github.head_ref }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install Black
+        run: pip install black
+      
+      - name: Format with Black
+        run: black .
+      
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Apply automatic formatting with Black"
+          branch: ${{ github.head_ref }}
