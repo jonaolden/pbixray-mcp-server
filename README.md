@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/jonaolden-pbixray-mcp-server-badge.png)](https://mseep.ai/app/jonaolden-pbixray-mcp-server)
+
 # PBIXRay MCP Server
 
 A [Model Context Protocol][mcp] (MCP) server for PBIXRay.
